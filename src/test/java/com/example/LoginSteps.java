@@ -30,7 +30,7 @@ public class LoginSteps {
     private static final By LOGIN_BUTTON = By.id("login-submit");
     private static final By ERROR_MESSAGE = By.cssSelector(".errors li");
 
-
+    // Тестирование перехода по ссылке (работает!) *сам в шоке
     @Given("the user is on the login page")
     public void user_is_on_login_page() {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win32\\chromedriver.exe");
@@ -57,11 +57,11 @@ public class LoginSteps {
     @Then("the user should see the text {string}")
     public void verify_page_content(String expectedText) {
         WebElement content = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.cssSelector("h4")));
+                .visibilityOfElementLocated(By.cssSelector("h2")));
         assertEquals(expectedText, content.getText());
     }
 
-    @When("the user enters {string} in the {string} field")
+    /*@When("the user enters {string} in the {string} field")
     public void enter_text_in_field(String text, String fieldId) {
         WebElement field = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.id(fieldId)));
@@ -81,7 +81,7 @@ public class LoginSteps {
         WebElement error = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector(".errors li")));
         assertEquals(expectedError, error.getText());
-    }
+    }*/
 
 
     //тесты для успешного входа

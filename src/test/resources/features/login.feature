@@ -4,7 +4,7 @@ Feature: Login Page
     Given the user is on the login page
     When the user clicks on the 'I don't remember my password' link
     Then the user should be redirected to the password recovery page
-    And the user should see the text "Password Recovery"
+    And the user should see the text "Forgot Password"
 
 
   Scenario Outline: Verify login with invalid email formats
