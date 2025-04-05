@@ -1,0 +1,58 @@
+package com.example;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import static org.junit.Assert.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class HomePageSteps {
+    private WebDriver driver;
+    private WebDriverWait wait;
+
+    @Given("I navigate to the InMotion Hosting homepage")
+    public void i_navigate_to_the_in_motion_hosting_homepage() {
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win32\\chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox", "--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver, 10);
+        driver.get("https://www.inmotionhosting.com");
+    }
+
+    @When("the page is fully loaded")
+    public void the_page_is_fully_loaded() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@alt='InMotion Hosting Logo']")));
+    }
+
+    @Then("I should see the link with id {string} and title {string}")
+    public void i_should_see_the_link_with_id_and_title(String id, String title) {
+        WebElement link = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
+        assertTrue(link.isDisplayed());
+        assertEquals(title, link.getAttribute("title"));
+    }
+
+    @Then("I click the Web Hosting link")
+    public void i_click_the_web_hosting_link() {
+        WebElement link = wait.until(ExpectedConditions.elementToBeClickable(By.id("webHostingDropDown")));
+        link.click();
+    }
+
+    @Then("I should be redirected to {string}")
+    public void i_should_be_redirected_to(String urlFragment) {
+        wait.until(ExpectedConditions.urlContains(urlFragment));
+        assertTrue(driver.getCurrentUrl().contains(urlFragment));
+        driver.quit();
+    }
+
+    @Then("I click the Support Center link")
+    public void i_click_the_support_center_link() {
+        WebElement link = wait.until(ExpectedConditions.elementToBeClickable(By.id("supportDropDown")));
+        link.click();}
+    }
