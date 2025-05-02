@@ -80,14 +80,14 @@ public class MainFactoryPage extends FactoryPage {
     }
 
     public MainFactoryPage verifyRedirection(String urlFragment) {
-        new WebDriverWait(driver, Duration.ofSeconds(10))
+        new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.urlContains(urlFragment));
         assertTrue(driver.getCurrentUrl().contains(urlFragment));
         return this;
     }
 
     public MainFactoryPage verifyPageContent(String expectedText) {
-        WebElement content = new WebDriverWait(driver, Duration.ofSeconds(10))
+        WebElement content = new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h2")));
         assertEquals(expectedText, content.getText());
         return this;

@@ -18,8 +18,8 @@ public class LoginSteps extends BasicFactoryTest {
         setUp(); // Инициализация WebDriver из BasicFactoryTest
         navigateToUrl(START_URL);
         mainPage = new MainFactoryPage(driver);
-        loginPage = new LoginPage(driver, wait);
-        mainPage.clickOnLoginButton();
+        //loginPage = new LoginPage(driver, wait);
+        //mainPage.clickOnLoginButton();
     }
 
     @When("the user clicks on the 'I don't remember my password' link")

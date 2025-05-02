@@ -6,19 +6,21 @@ import io.cucumber.java.en.When;
 import com.example.factory.factorypages.MainFactoryPage;
 import com.example.factory.factorytest.BasicFactoryTest;
 
+import static com.example.framework.core.lib.InmotionPageURLs.START_URL;
+
 public class HomePageSteps extends BasicFactoryTest {
     private MainFactoryPage mainPage;
 
     @Given("I navigate to the InMotion Hosting homepage")
     public void iNavigateToTheInMotionHostingHomepage() {
         setUp(); // Инициализация WebDriver из BasicFactoryTest
-        navigateToUrl("https://www.inmotionhosting.com");//!!
-        mainPage = new MainFactoryPage(driver, wait);
+        navigateToUrl(START_URL);
+        mainPage = new MainFactoryPage(driver);
     }
 
     @When("the page is fully loaded")
     public void thePageIsFullyLoaded() {
-        mainPage.verifyPageIsFullyLoaded();
+        mainPage.isMainLogoDisplayed();
     }
 
     @Then("I should see the link with id {string} and title {string}")
